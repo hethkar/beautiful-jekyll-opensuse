@@ -1,7 +1,7 @@
 ---
-layout: post
+
 title: 'Hello world post'
-published: true
+subtitle: post 1
 ---
 
 ## Hello world
