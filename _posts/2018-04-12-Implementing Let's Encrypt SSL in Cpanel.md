@@ -1,3 +1,7 @@
+---
+layout: post
+title: 'How to install Let's Encrypt SSL for your websites in Cpanel'
+---
 # How to install Let's Encrypt SSL for your websites in Cpanel
 
 Go to the Security Sectiom of your Cpanel 
