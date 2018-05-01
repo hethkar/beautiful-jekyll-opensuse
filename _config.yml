@@ -29,6 +29,7 @@ description: My Blog about cool FOSS stuff.
 navbar-links:
   About Me: "aboutme"
   Stuff I Work On:
+  Resume: "resume"
     #- openSUSE: "https://www.opensuse.org"
     #- openQA: "https://openqa.opensuse.org"
 
