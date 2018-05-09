@@ -1,18 +1,23 @@
 One of the EC2 linux servers running Ubuntu 16.04 i maintain had space issues.
 When i ran df -h , it showed the root partition had still got 2.6gb free space left and yet the server kept throwing disk space issues.
+
 Running df -i showed the root cause of the problem , which was maximum iNodes usage which was at 100 % for the root partition.
 
 Steps to bring down the iNodes usage
 
 Find out which is consuming maximum number of iNodes
+
 Log in as root user in your EC2 instance- sudo su
+
 Run as root user:
 for i in /*; do echo $i; find $i |wc -l; done
 
 In my case the /usr had the highest number-  /usr 485722
+
 Digging deeper in the /usr directory
 
 for i in /usr/*; do echo $i; find $i |wc -l; done
+
 /usr/bin
 762
 /usr/games
@@ -32,7 +37,9 @@ for i in /usr/*; do echo $i; find $i |wc -l; done
 
 
 Further digging into /usr/src
+
 for i in /usr/src/*; do echo $i; find $i |wc -l; done
+
 /usr/src/linux-headers-4.4.0-64
 16899
 /usr/src/linux-headers-4.4.0-64-generic
@@ -103,7 +110,9 @@ for i in /usr/src/*; do echo $i; find $i |wc -l; done
 9804
 
 So it's the kernels taking up too much iNodes usage. I had to remove few kernels manually as i was not able to run the apt-get commands in the following manner
+
 sudo rm -rf /usr/src/linux-headers-4.4.0-70/*
+
 sudo rm -rf /usr/src/linux-headers-4.4.0-70-generic/*
 
 Use uname -mrs to check the kernel currently being used so that you don't delete it accidentally.
